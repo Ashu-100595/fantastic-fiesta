@@ -1,0 +1,58 @@
+
+const tabs = document.querySelectorAll('[data-tab-target]')
+const tabContents = document.querySelectorAll('[data-tab-content]')
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = document.querySelector(tab.dataset.tabTarget)
+    tabContents.forEach(tabContent => {
+      tabContent.classList.remove('active')
+    })
+    tabs.forEach(tab => {
+      tab.classList.remove('active')
+    })
+    tab.classList.add('active')
+    target.classList.add('active')
+  })
+})
+
+var slides=document.querySelector('.slider-items').children;
+var nextSlide=document.querySelector(".right-slide");
+var prevSlide=document.querySelector(".left-slide");
+var totalSlides=slides.length;
+var index=0;
+
+nextSlide.onclick=function () {
+    next("next");
+}
+prevSlide.onclick=function () {
+    next("prev");
+}
+
+function next(direction){
+
+  if(direction=="next"){
+     index++;
+      if(index==totalSlides){
+       index=0;
+      }
+  } 
+  else{
+          if(index==0){
+           index=totalSlides-1;
+          }
+          else{
+           index--;
+          }
+   }
+
+ for(i=0;i<slides.length;i++){
+         slides[i].classList.remove("active");
+ }
+ slides[index].classList.add("active");     
+
+}
+
+
+
+
